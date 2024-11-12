@@ -33,8 +33,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  google_mlkit_text_recognition: ^0.14.0
   http: ^1.2.2
+  image_picker: ^1.1.2
   meta: ^1.15.0
+  permission_handler: ^11.3.1
   url_launcher: ^6.3.1
 
 dev_dependencies:

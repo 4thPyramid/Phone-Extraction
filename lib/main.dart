@@ -54,7 +54,6 @@ class _PhoneNumberExtractorScreenState
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // استدعاء دالة استخراج رقم الهاتف من Cubit
                 BlocProvider.of<PhoneNumberCubit>(context)
                     .extractPhoneNumber(_textController.text);
               },
@@ -79,6 +78,13 @@ class _PhoneNumberExtractorScreenState
                         },
                         child: const Text('الاتصال بالرقم'),
                       ),
+                      ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<PhoneNumberCubit>(context)
+                              .openWhatsApp(state.phoneNumber);
+                        },
+                        child: const Text('تحدث على واتساب'),
+                      ),
                     ],
                   );
                 } else if (state is PhoneNumberFailure) {
@@ -93,6 +99,14 @@ class _PhoneNumberExtractorScreenState
                   );
                 }
               },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context
+                    .read<PhoneNumberCubit>()
+                    .pickImageAndExtractPhoneNumber();
+              },
+              child: Text('اختيار صورة'),
             ),
           ],
         ),
