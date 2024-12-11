@@ -1,16 +1,21 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- إذن الاتصال الهاتفي -->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fourth.extract_phone">
 
+    <!-- أذونات التطبيق -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     <!-- إعدادات التطبيق -->
     <application
-        android:label="extract_phone"
+        android:label="مستخرج الهاتف"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="true"
+        android:theme="@style/LaunchTheme">
+
+        <!-- النشاط الرئيسي -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,36 +26,34 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
             
-            <!-- تحديد الثيم الخاص بالنشاط -->
+            <!-- ثيم التطبيق -->
             <meta-data
-              android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"/>
-              
-            <!-- Intent Filter لتحديد التطبيق كنشاط رئيسي -->
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            
+            <!-- Intent Filter -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <!-- إعدادات خاصة بـ Flutter Plugins -->
+
+        <!-- إعدادات Flutter -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    
-    <!-- السماح بعمل Query على جميع التطبيقات المتاحة لاستخدامها مع الإجراء "tel:" و "https:" -->
+
+    <!-- إعدادات Queries -->
     <queries>
-        <!-- للسماح بفتح الروابط من نوع "tel:" لاستخدام تطبيق الهاتف -->
         <intent>
-            <action android:name="android.intent.action.DIAL"/>
-            <data android:scheme="tel"/>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
         </intent>
-        
-        <!-- للسماح بفتح الروابط من نوع "https" لاستخدام WhatsApp -->
         <intent>
-            <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="https"/>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
     </queries>
+
 </manifest>

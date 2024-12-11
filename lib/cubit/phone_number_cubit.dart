@@ -64,9 +64,8 @@ class PhoneNumberCubit extends Cubit<PhoneNumberState> {
     }
   }
 
-  Future<void> pickImageAndExtractPhoneNumber() async {
-    final XFile? imageFile =
-        await _picker.pickImage(source: ImageSource.gallery);
+  Future<void> pickImageAndExtractPhoneNumber(ImageSource source) async {
+    final XFile? imageFile = await _picker.pickImage(source: source);
 
     if (imageFile == null) {
       emit(PhoneNumberFailure('لم يتم اختيار صورة.'));
